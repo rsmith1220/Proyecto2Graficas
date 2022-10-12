@@ -25,11 +25,14 @@ rtx = Raytracer(width, height)
 rtx.envMap = Texture("parkingLot.bmp")
 
 rtx.lights.append( AmbientLight(intensity = 0.1 ))
-# rtx.lights.append(PointLight((0,5,10), constant = 1.0, linear = 0.1, quad = 0.05, color = (1,1,1)))
+rtx.lights.append(PointLight((0,5,10), constant = 1.0, linear = 0.1, quad = 0.05, color = (1,1,1)))
 
 
 
-rtx.scene.append( Disk(position = (0,-3,-7), radius = 2, normal = (0,1,0), material = marble ))
+rtx.scene.append( Disk(position = (0,-3,-7), radius = 2, normal = (0,1,0), material = mirror ))
+rtx.scene.append( Disk(position = (0,3,-7), radius = 2, normal = (0,1,0), material = brick ))
+rtx.scene.append( Disk(position = (0,0,-7), radius = 2, normal = (1,0,1), material = earth ))
+rtx.scene.append( Disk(position = (3,0,-7), radius = 2, normal = (1,0,1), material = glass ))
 
 
 

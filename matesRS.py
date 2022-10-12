@@ -98,12 +98,20 @@ def magnitud(v):
     return b
 
 def normal(v):
-    final=[]
-    h=magnitud(v)
-    for i in v:
-        l=i/h
-        final.append(l)
-    return final
+    a=0
+    suma=0
+    while v <= a:
+        suma=suma+v[a]
+        a+=1
+    return suma
+
+def normallength(v):
+    a=0
+    suma=0
+    while len(v) <= a:
+        suma=suma+v[a]
+        a+=1
+    return suma
 
 def listas(l1,l2):
     Result = []

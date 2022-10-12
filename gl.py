@@ -1,8 +1,10 @@
 import struct
 from collections import namedtuple
 import numpy as np
+import matesRS
 from figures import *
 from lights import *
+from array import array
 from math import cos, sin, tan, pi
 from obj import Obj
 
@@ -125,10 +127,10 @@ class Raytracer(object):
 
         material = intersect.sceneObj.material
 
-        finalColor = np.array([0,0,0])
-        objectColor = np.array([material.diffuse[0],
+        finalColor = [0,0,0]
+        objectColor = [material.diffuse[0],
                                 material.diffuse[1],
-                                material.diffuse[2]])
+                                material.diffuse[2]]
 
         if material.matType == OPAQUE:
             for light in self.lights:
@@ -141,7 +143,7 @@ class Raytracer(object):
                 finalColor = np.add(finalColor, lightColor)
 
         elif material.matType == REFLECTIVE:
-            reflect = reflectVector(intersect.normal, np.array(dir) * -1)
+            reflect = reflectVector(intersect.normal, (dir) * -1)
             reflectColor = self.cast_ray(intersect.point, reflect, intersect.sceneObj, recursion + 1)
             reflectColor = np.array(reflectColor)
 
