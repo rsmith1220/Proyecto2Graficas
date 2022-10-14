@@ -148,7 +148,7 @@ class Raytracer(object):
             reflectColor = self.cast_ray(intersect.point, reflect, intersect.sceneObj, recursion + 1)
             reflectColor = np.array(reflectColor)
 
-            specColor = np.array([0,0,0])
+            specColor = [0,0,0]
             for light in self.lights:
                 specColor = matesRS.add(specColor, light.getSpecColor(intersect, self))
 
@@ -158,7 +158,7 @@ class Raytracer(object):
             outside = matesRS.dot(dir, intersect.normal) < 0
             bias = intersect.normal * 0.001
 
-            specColor = np.array([0,0,0])
+            specColor = [0,0,0]
             for light in self.lights:
                 specColor = matesRS.add(specColor, light.getSpecColor(intersect, self))
 
@@ -169,7 +169,7 @@ class Raytracer(object):
 
             kr = fresnel(intersect.normal, dir, material.ior)
 
-            refractColor = np.array([0,0,0])
+            refractColor = [0,0,0]
             if kr < 1:
                 refract = refractVector(intersect.normal, dir, material.ior)
                 refractOrig = matesRS.subtract(intersect.point, bias) if outside else matesRS.add(intersect.point, bias)
@@ -243,7 +243,6 @@ class Raytracer(object):
             for y in range(self.height):
                 for x in range(self.width):
                     file.write(self.pixels[x][y])
-
 
 
 

@@ -70,9 +70,9 @@ class DirectionalLight(object):
         intensity = matesRS.dot(intersect.normal, light_dir) * self.intensity
         intensity = float(max(0, intensity))            
                                                         
-        diffuseColor = np.array([intensity * self.color[0],
+        diffuseColor = [intensity * self.color[0],
                                  intensity * self.color[1],
-                                 intensity * self.color[2]])
+                                 intensity * self.color[2]]
 
         return diffuseColor
 
@@ -84,9 +84,9 @@ class DirectionalLight(object):
         view_dir = matesRS.normal2(view_dir)
 
         spec_intensity = self.intensity * max(0,matesRS.dot(view_dir, reflect)) ** intersect.sceneObj.material.spec
-        specColor = np.array([spec_intensity * self.color[0],
+        specColor = [spec_intensity * self.color[0],
                               spec_intensity * self.color[1],
-                              spec_intensity * self.color[2]])
+                              spec_intensity * self.color[2]]
 
         return specColor
 
@@ -121,9 +121,9 @@ class PointLight(object):
         intensity = matesRS.dot(intersect.normal, light_dir) * attenuation
         intensity = float(max(0, intensity))            
                                                         
-        diffuseColor = np.array([intensity * self.color[0],
+        diffuseColor = [intensity * self.color[0],
                                  intensity * self.color[1],
-                                 intensity * self.color[2]])
+                                 intensity * self.color[2]]
 
         return diffuseColor
 
@@ -142,9 +142,9 @@ class PointLight(object):
         attenuation = 1.0
 
         spec_intensity = attenuation * max(0,matesRS.dot(view_dir, reflect)) ** intersect.sceneObj.material.spec
-        specColor = np.array([spec_intensity * self.color[0],
+        specColor = [spec_intensity * self.color[0],
                               spec_intensity * self.color[1],
-                              spec_intensity * self.color[2]])
+                              spec_intensity * self.color[2]]
 
         return specColor
 
