@@ -84,7 +84,7 @@ class Plane(object):
 
             if t > 0:
                 # P = O + t*D
-                P = matesRS.add(orig, t * (dir))
+                P = matesRS.add(orig, t * np.array(dir))
                 return Intersect(distance = t,
                                  point = P,
                                  normal = self.normal,

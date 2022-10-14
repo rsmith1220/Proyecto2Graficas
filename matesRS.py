@@ -118,3 +118,11 @@ def listas(l1,l2):
     for i1, i2 in zip(l1, l2):
         Result.append(i1*i2)
     return Result
+
+def normal2(v):
+    final=[]
+    h=magnitud(v)
+    for i in v:
+        l=i/h
+        final.append(l)
+    return final
