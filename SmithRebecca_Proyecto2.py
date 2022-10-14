@@ -4,7 +4,7 @@ from figures import *
 from lights import *
 
 
-width = 512
+width = 412
 height = 512
 
 # Materiales
@@ -33,6 +33,7 @@ rtx.scene.append( Disk(position = (0,-3,-7), radius = 2, normal = (0,1,0), mater
 rtx.scene.append( Disk(position = (0,3,-7), radius = 2, normal = (0,1,0), material = brick ))
 rtx.scene.append( Disk(position = (0,0,-7), radius = 2, normal = (1,0,1), material = earth ))
 rtx.scene.append( Disk(position = (3,0,-7), radius = 2, normal = (1,0,1), material = glass ))
+# rtx.scene.append( Plane(position = (0,0,-40), normal = (0,0,1), material = stone ))
 
 
 

@@ -1,6 +1,4 @@
-from array import array
 import numpy as np
-import matesRS
 
 WHITE = (1,1,1)
 BLACK = (0,0,0)
@@ -34,9 +32,9 @@ class Sphere(object):
         self.material = material
 
     def ray_intersect(self, orig, dir):
-        L = matesRS.subtract(self.center, orig)
-        tca = matesRS.dot(L, dir)
-        d = (matesRS.normal(L) ** 2 - tca ** 2) ** 0.5
+        L = np.subtract(self.center, orig)
+        tca = np.dot(L, dir)
+        d = (np.linalg.norm(L) ** 2 - tca ** 2) ** 0.5
 
         if d > self.radius:
             return None
@@ -52,12 +50,12 @@ class Sphere(object):
             return None
         
         # P = O + t0 * D
-        P = matesRS.add(orig, t0 * (dir))
-        normal = matesRS.subtract(P, self.center)
-        normal = matesRS.normal(normal)
+        P = np.add(orig, t0 * np.array(dir))
+        normal = np.subtract(P, self.center)
+        normal = normal / np.linalg.norm(normal)
 
-        u = 1 - ((np.arctan2(normal[2], normal[0]) / (2 * 3.14159265359)) + 0.5)
-        v = np.arccos(-normal[1]) / 3.14159265359
+        u = 1 - ((np.arctan2(normal[2], normal[0]) / (2 * np.pi)) + 0.5)
+        v = np.arccos(-normal[1]) / np.pi
 
         uvs = (u,v)
 
@@ -76,15 +74,15 @@ class Plane(object):
 
     def ray_intersect(self, orig, dir):
         # Distancia = (( planePos - origRayo) o normal) / (direccionRayo o normal)
-        denom = matesRS.dot( dir, self.normal)
+        denom = np.dot( dir, self.normal)
 
         if abs(denom) > 0.0001:
-            num = matesRS.dot( matesRS.subtract(self.position, orig), self.normal)
+            num = np.dot( np.subtract(self.position, orig), self.normal)
             t = num / denom
 
             if t > 0:
                 # P = O + t*D
-                P = matesRS.add(orig, t * np.array(dir))
+                P = np.add(orig, t * np.array(dir))
                 return Intersect(distance = t,
                                  point = P,
                                  normal = self.normal,
@@ -106,7 +104,7 @@ class Disk(object):
         if intersect is None:
             return None
 
-        contact = matesRS.subtract(intersect.point, self.plane.position)
+        contact = np.subtract(intersect.point, self.plane.position)
         contact = np.linalg.norm(contact)
 
         if contact > self.radius:
@@ -117,32 +115,6 @@ class Disk(object):
                          normal = self.plane.normal,
                          texcoords = None,
                          sceneObj = self)
-
-class Oval(object):
-    def magnitude(vector):
-       return (matesRS.dot(vector,vector))**0.5
-
-    def norm(vector):
-        return (vector)/magnitude((vector))
-
-    def lineRayIntersectionPoint(rayOrigin, rayDirection, point1, point2):
-    
-        # Convert to numpy arrays
-        rayOrigin = array(rayOrigin, float(dtype))
-        rayDirection = array(norm(rayDirection), float(dtype))
-        point1 = array(point1, float(dtype))
-        point2 = array(point2, float(dtype))
-        
-        
-        v1 = rayOrigin - point1
-        v2 = point2 - point1
-        v3 = array([-rayDirection[1], rayDirection[0]])
-        t1 = matesRS.cross(v2, v1) / matesRS.dot(v2, v3)
-        t2 = matesRS.dot(v1, v3) / matesRS.dot(v2, v3)
-        if t1 >= 0.0 and t2 >= 0.0 and t2 <= 1.0:
-            return [rayOrigin + t1 * rayDirection]
-        return []
-
 
 
 
@@ -164,16 +136,16 @@ class AABB(object):
         halfSizes[2] = size[2] / 2
 
         # Sides
-        self.planes.append( Plane( matesRS.add(position, (halfSizes[0],0,0)), (1,0,0), material ))
-        self.planes.append( Plane( matesRS.add(position, (-halfSizes[0],0,0)), (-1,0,0), material ))
+        self.planes.append( Plane( np.add(position, (halfSizes[0],0,0)), (1,0,0), material ))
+        self.planes.append( Plane( np.add(position, (-halfSizes[0],0,0)), (-1,0,0), material ))
 
         # Up and Down
-        self.planes.append( Plane( matesRS.add(position, (0,halfSizes[1],0)), (0,1,0), material ))
-        self.planes.append( Plane( matesRS.add(position, (0,-halfSizes[1],0)), (0,-1,0), material ))
+        self.planes.append( Plane( np.add(position, (0,halfSizes[1],0)), (0,1,0), material ))
+        self.planes.append( Plane( np.add(position, (0,-halfSizes[1],0)), (0,-1,0), material ))
 
         # Front and back
-        self.planes.append( Plane( matesRS.add(position, (0,0,halfSizes[2])), (0,0,1), material ))
-        self.planes.append( Plane( matesRS.add(position, (0,0,-halfSizes[2])), (0,0,-1), material ))
+        self.planes.append( Plane( np.add(position, (0,0,halfSizes[2])), (0,0,1), material ))
+        self.planes.append( Plane( np.add(position, (0,0,-halfSizes[2])), (0,0,-1), material ))
 
         #Bounds
         self.boundsMin = [0,0,0]
