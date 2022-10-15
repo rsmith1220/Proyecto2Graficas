@@ -88,6 +88,11 @@ def multiply(v1,v2):
     result = [i*j for i, j in zip(v1,v2)]
     return result
 
+def divide(l,i):
+    newList = []
+    for x in l:
+        newList.append(x/i)
+
 def magnitud(v):
     b=0
     a=0
