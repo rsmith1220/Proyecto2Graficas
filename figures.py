@@ -1,4 +1,5 @@
 import numpy as np
+import matesRS
 
 WHITE = (1,1,1)
 BLACK = (0,0,0)
@@ -205,3 +206,5 @@ class AABB(object):
                          normal = intersect.normal,
                          texcoords = (u,v),
                          sceneObj = self)
+
+

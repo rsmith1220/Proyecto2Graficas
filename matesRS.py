@@ -126,3 +126,6 @@ def normal2(v):
         l=i/h
         final.append(l)
     return final
+
+def subTuple(a,b):
+    tuple(map(lambda i, j: i - j, a, b))
