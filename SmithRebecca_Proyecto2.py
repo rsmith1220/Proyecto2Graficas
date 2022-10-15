@@ -38,10 +38,10 @@ rtx.lights.append( PointLight(point = (0,1,-10), color=(0.5,0.5,0.5) ))
 
 
 rtx.scene.append( Plane(position = (0,-10,0), normal = (0,1,0), material = stone ))
-rtx.scene.append( Plane(position = (0,10,0), normal = (0,-1,0), material = stone ))
-rtx.scene.append( Plane(position = (-10,0,0), normal = (1,0,0), material = stone ))
-rtx.scene.append( Plane(position = (10,0,0), normal = (-1,0,0), material = stone ))
-rtx.scene.append( Plane(position = (0,0,-40), normal = (0,0,1), material = stone ))
+# rtx.scene.append( Plane(position = (0,10,0), normal = (0,-1,0), material = stone ))
+# rtx.scene.append( Plane(position = (-10,0,0), normal = (1,0,0), material = stone ))
+# rtx.scene.append( Plane(position = (10,0,0), normal = (-1,0,0), material = stone ))
+# rtx.scene.append( Plane(position = (0,0,-40), normal = (0,0,1), material = stone ))
 
 # face
 rtx.scene.append( Sphere(V3(-1,0,-3), 0.5, face)  )
@@ -49,9 +49,9 @@ rtx.scene.append( Sphere(V3(-1,0,-3), 0.5, face)  )
 rtx.scene.append( Sphere(V3(-0.9,-0.06,-2.5), 0.1, face)  )
 
 # eyebrow, eye and pupil
-rtx.scene.append( Disk(position = (-1.1,0.24,-2.5), radius = 0.1, normal = (0,1,0), material = hair ))
-rtx.scene.append( Sphere(V3(-1.09,0.1,-2.5), 0.1, eyes)  )
-rtx.scene.append( Sphere(V3(-1.06,0.1,-2.4), 0.06, pupil)  )
+# rtx.scene.append( Disk(position = (-1.1,0.24,-2.5), radius = 0.1, normal = (0,1,0), material = hair ))
+# rtx.scene.append( Sphere(V3(-1.09,0.1,-2.5), 0.1, eyes)  )
+# rtx.scene.append( Sphere(V3(-1.06,0.1,-2.4), 0.06, pupil)  )
 
 # eyebrow, eye and pupil
 rtx.scene.append( Disk(position = (-0.6,0.24,-2.5), radius = 0.1, normal = (0,1,0), material = hair ))
@@ -64,18 +64,18 @@ rtx.scene.append( Disk(position = (-0.9,0.6,-2.7), radius = 0.2, normal = (0.1,0
 # mouth
 rtx.scene.append( Disk(position = (-0.8,-0.2,-2.3), radius = 0.2, normal = (0,1,0), material = lips ))
 
-# shirt and sleeve
+# shirt
 rtx.scene.append( Sphere(V3(-1,-1,-3), 0.5, shirt)  )
-rtx.scene.append( Sphere(V3(-1,-1.3,-3), 0.5, shirt)  )
-rtx.scene.append( Sphere(V3(-1,-1.6,-3), 0.5, shirt)  )
+# rtx.scene.append( Sphere(V3(-1,-1.3,-3), 0.5, shirt)  )
+# rtx.scene.append( Sphere(V3(-1,-1.6,-3), 0.5, shirt)  )
 
 # doors
 rtx.scene.append( AABB(position = (-1,-4,-18), size = (2,2,2), material = door))
-rtx.scene.append( AABB(position = (-1,-2,-18), size = (2,2,2), material = door))
-rtx.scene.append( AABB(position = (1,-4,-18), size = (2,2,2), material = door))
-rtx.scene.append( AABB(position = (1,-2,-18), size = (2,2,2), material = door))
-rtx.scene.append( AABB(position = (1,-1,-18), size = (2,2,2), material = door))
-rtx.scene.append( AABB(position = (-1,-1,-18), size = (2,2,2), material = door))
+# rtx.scene.append( AABB(position = (-1,-2,-18), size = (2,2,2), material = door))
+# rtx.scene.append( AABB(position = (1,-4,-18), size = (2,2,2), material = door))
+# rtx.scene.append( AABB(position = (1,-2,-18), size = (2,2,2), material = door))
+# rtx.scene.append( AABB(position = (1,-1,-18), size = (2,2,2), material = door))
+# rtx.scene.append( AABB(position = (-1,-1,-18), size = (2,2,2), material = door))
 
 
 rtx.glRender()
