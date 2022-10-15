@@ -127,7 +127,14 @@ def normal2(v):
         final.append(l)
     return final
 
-
+def intvec(i,v):
+    j=[]
+    suma=0
+    for a in v:
+        mul=v[suma]*0
+        j.append(mul)
+        suma+=1
+        
 
 def subTuple(a,b):
     tuple(map(lambda i, j: i - j, a, b))
