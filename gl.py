@@ -2,6 +2,7 @@ import struct
 from collections import namedtuple
 import numpy as np
 import matesRS
+import array
 from figures import *
 from lights import *
 from math import cos, sin, tan, pi
