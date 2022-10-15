@@ -1,6 +1,8 @@
 import numpy as np
 from pyrsistent import m
 import matesRS
+import array
+
 
 DIR_LIGHT = 0
 POINT_LIGHT = 1
@@ -23,7 +25,7 @@ def refractVector(normal, direction, ior):
         cosi = -cosi
     else:
         etai, etat = etat, etai
-        normal = np.array(normal) * -1
+        normal = array(normal) * -1
 
     eta = etai / etat
     k = 1 - (eta**2) * (1 - (cosi**2) )
@@ -31,7 +33,7 @@ def refractVector(normal, direction, ior):
     if k < 0: # Total Internal Reflection
         return None
 
-    R = eta * np.array(direction) + (eta * cosi - k**0.5) * normal
+    R = eta * array(direction) + (eta * cosi - k**0.5) * normal
     return R
 
 
@@ -67,32 +69,32 @@ class DirectionalLight(object):
         self.lightType = DIR_LIGHT
 
     def getDiffuseColor(self, intersect, raytracer):
-        light_dir = np.array(self.direction) * -1
+        light_dir = array(self.direction) * -1
         intensity = matesRS.dot(intersect.normal, light_dir) * self.intensity
         intensity = float(max(0, intensity))            
                                                         
-        diffuseColor = np.array([intensity * self.color[0],
+        diffuseColor = array([intensity * self.color[0],
                                  intensity * self.color[1],
                                  intensity * self.color[2]])
 
         return diffuseColor
 
     def getSpecColor(self, intersect, raytracer):
-        light_dir = np.array(self.direction) * -1
+        light_dir = array(self.direction) * -1
         reflect = reflectVector(intersect.normal, light_dir)
 
         view_dir = matesRS.subtract( raytracer.camPosition, intersect.point)
         view_dir = matesRS.normal2(view_dir)
 
         spec_intensity = self.intensity * max(0,matesRS.dot(view_dir, reflect)) ** intersect.sceneObj.material.spec
-        specColor = np.array([spec_intensity * self.color[0],
+        specColor = array([spec_intensity * self.color[0],
                               spec_intensity * self.color[1],
                               spec_intensity * self.color[2]])
 
         return specColor
 
     def getShadowIntensity(self, intersect, raytracer):
-        light_dir = np.array(self.direction) * -1
+        light_dir = array(self.direction) * -1
 
         shadow_intensity = 0
         shadow_intersect = raytracer.scene_intersect(intersect.point, light_dir, intersect.sceneObj)
